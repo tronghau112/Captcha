@@ -1,13 +1,13 @@
-1. resize.py->
+resize.py
 
-2. preprocess_images.py
+preprocess_images.py
 
-3. generate_image.py
+generate_image.py
 
-4. extract_char.py
+extract_char.py
 
-5. model.py
+model.py
 
-6.solver_with_model.py
+solver_with_model.py
 
-7.solve_captcha.py
+solve_captcha.py
