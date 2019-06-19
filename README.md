@@ -1,13 +1,20 @@
+#Captcha
+#Đồ án môn xử lý ảnh và ứng dụng
+
 resize.py
 
 preprocess_images.py
 
-generate_image.py
+generate_image.py: gen  captcha in folder images
 
-extract_char.py
+extract_char.py: extract char to a image and save it in folder output_char
 
-model.py
+model.py: building model use CNN
 
-solver_with_model.py
+solve_captcha.py: have function solve captcha
 
-solve_captcha.py
+solver_with_model.py: detect captcha show in console.
+
+testweb.py: go to http://localhost:5000 . Input a image captcha, output a string
+
+
