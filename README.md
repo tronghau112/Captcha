@@ -1,5 +1,4 @@
-#Captcha
-#Đồ án môn xử lý ảnh và ứng dụng
+#Đồ án môn xử lý ảnh và ứng dụng: Captcha
 
 resize.py
 
