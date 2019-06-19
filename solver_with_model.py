@@ -3,8 +3,8 @@ import numpy as np
 
 from solve_captcha import load_captcha_model, solve_captcha
 
-MODEL_FILENAME = "model/captcha_model.txt"
-MODEL_LABELS_FILENAME = "model/model_labels.txt"
+MODEL_FILENAME = "model/captcha_model1.hdf5"
+MODEL_LABELS_FILENAME = "model/model_labels.dat"
 CAPTCHA_IMAGES_TEST = "test"
 
 model = load_captcha_model(MODEL_FILENAME, MODEL_LABELS_FILENAME)

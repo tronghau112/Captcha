@@ -11,8 +11,8 @@ from keras.layers.core import Flatten, Dense
 from resize import resize_image
 
 OUTPUT_FOLDER = "output_char"
-MODEL_FILENAME = "model/captcha_model.txt"
-MODEL_LABELS_FILENAME = "model/model_labels.txt"
+MODEL_FILENAME = "model/captcha_model.hdf5"
+MODEL_LABELS_FILENAME = "model/model_labels.dat"
 
 data = []
 labels = []
@@ -61,23 +61,23 @@ model = Sequential()
 
 #convolutional layer đầu tiên vs max pooling(tổng hợp)
 
-model.add(Conv2D(20,(5,5),padding = "same",input_shape = (20,20,1),activation = "relu"))
+model.add(Conv2D(20,(5,5),padding = "same",input_shape = (20,20,1),activation = "relu")) #relu có tác dụng đưa gia trị âm thành 0
 model.add(MaxPooling2D(pool_size = (2,2),strides = (2,2)))
-
+#Stride được hiểu là khoảng cách dịch chuyển của bộ lọc sau mỗi lần tính
 
 #convolutional layer thứ 2 vs max pooling(tổng hợp)
 
 model.add(Conv2D(50,(5,5),padding = "same",activation = "relu"))
 model.add(MaxPooling2D(pool_size = (2,2),strides = (2,2)))
 
+
 #ẩn layer vs 500 nodes
 
 model.add(Flatten())
 model.add(Dense(500,activation="relu"))
 
-
-#output vs 32 nodes mỗi node ứng vs 1 chữ cái hoặc 1 số dự đoán
-#Dense(32,activation="softmax")
+#output vs 36 nodes mỗi node ứng vs 1 chữ cái hoặc 1 số dự đoán
+#Dense(36,activation="softmax")
 model.add(Dense(36,activation="softmax"))
 
 #yêu cầu Keras build TF model sau scenes
@@ -85,9 +85,9 @@ model.add(Dense(36,activation="softmax"))
 model.compile(loss = "categorical_crossentropy",optimizer="adam", metrics=["accuracy"])
 
 #train neural network
-#batch_size=32
-model.fit(X_train, Y_train, validation_data=(X_test, Y_test), batch_size=36, epochs=10, verbose=1)
+#batch_size=36
+model.fit(X_train, Y_train, validation_data=(X_test, Y_test), batch_size=36, epochs=20, verbose=1)
 #Lưu model vào filename
 
 model.save(MODEL_FILENAME)
-print("luu model vao model/captcha_model.txt")
+print("luu model vao model/captcha_model.hdf5")

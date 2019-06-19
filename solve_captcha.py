@@ -5,8 +5,11 @@ import cv2
 import tensorflow as tf
 from preprocess_images import preprocess_image
 from resize import resize_image
-MODEL_FILENAME = "model/captcha_model.txt"
-MODEL_LABELS_FILENAME = "model/model_labels.txt"
+MODEL_FILENAME = "model/captcha_model.hdf5"
+MODEL_LABELS_FILENAME = "model/model_labels.dat"
+
+
+
 
 def load_captcha_model(model_filename = MODEL_FILENAME,labels_filename = MODEL_LABELS_FILENAME):
 

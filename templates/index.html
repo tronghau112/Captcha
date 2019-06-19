@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detect Captcha</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<br>
+<br>
+
+<body >
+   <div class = "container">
+        <table class="table">
+            <h2>Thành viên nhóm:</h2>
+            <thead>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Họ và tên</th>
+                    <th>MSSV</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="info">
+                    <th scope="row">1</th>
+                    <td >Đinh Trọng Hậu</td>
+                    <td>15520204</td>
+                </tr>
+                <tr class="info">
+                    <th scope="row">2</th>
+                    <td >Nguyễn Hoàng Vũ Thân</td>
+                    <td>15520785</td>
+                </tr>
+            </tbody>
+        </table>
+  <br>
+  <br>
+   </div>
+  <div class="container"id="move">
+      <div class="container">
+      <header class="navbar">
+        <form action="/upload" method="post"enctype="multipart/form-data"class="md-form">
+          <div >
+            <div align="left">
+              <img id="output_image">
+              <div align="center" >
+                <input id="btndetect" type="submit" name="detect"value="detect" class="btn btn-primary"/>
+              </div>
+            </div>
+            <br>
+              <input type="file" name="image" onchange="preview_image(event)"/>
+          </div>
+        </form>
+      </header>    
+    </div>
+      <div class="text-center" id="result">
+        {%if init%}
+          {% if string_result %}
+            <h1>{{string_result}}</h1>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+</body>
+</html>
+<script>
+  function preview_image(event)
+  {
+      var reader = new FileReader();
+      reader.onload=function(){
+        var output=document.getElementById('output_image')
+        output.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+<style type="text/css">
+  body{
+    background-image: linear-gradient(to left,  #ccfff5 ,#ccfff5);
+  }
+  #output_image{
+      width:200px ; 
+      height:100px ; 
+      border:2px solid #000;
+      position: inherit;
+  }
+#btndetect {
+    text-align: left;
+    margin: 180px;
+    top: 200px;
+    position: fixed;
+    left: 200px;
+}
+  #result {
+      position: fixed;
+      right: 580px;
+      top: 265px;
+  }
+  #move{
+    position: fixed;
+    left: 35px;
+  }
+</style>

@@ -5,9 +5,7 @@ import cv2
 
 def img_open_cv(image):
 	open_cv_image = np.array(image)
-	#convert RGB -> BGR
 	open_cv_image = open_cv_image[:,:,::-1].copy()
-
 	return open_cv_image
 
 def alpha_composite(front, back):
@@ -33,7 +31,6 @@ def alpha_composite(front, back):
     np.seterr(**old_setting)
     result[alpha] *= 255
     np.clip(result, 0, 255)
-    # astype('uint8') maps np.nan and np.inf to 0
     result = result.astype('uint8')
     result = Image.fromarray(result, 'RGBA')
     return result
@@ -45,7 +42,7 @@ def composite_with_color(image,color=(255,255,255)):
 
 def preprocess_image(image_file):
 	image = cv2.imread(image_file)
-	#load ảnh và chuển sang màu gray
+	#load ảnh và chuyển sang màu gray
 	image = img_open_cv(composite_with_color(Image.open(image_file).convert('RGBA')))
 	image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 	#thêm 1 số padding xq images
@@ -72,8 +69,8 @@ def preprocess_image(image_file):
 			letter_images_regions.append((x+half_width,y,half_width,h))
 		else:
 			letter_images_regions.append((x,y,w,h))
-	#nếu có nhiều hơn or ít hơn 4 ký tự trong hình => ko trích xuất mà bỏ qua
-	if len(letter_images_regions)!=4:
+	#nếu có nhiều hơn or ít hơn 5 ký tự trong hình => ko trích xuất mà bỏ qua
+	if len(letter_images_regions)!=5:
 		return ""
 	#sắp xết hình ảnh chữ cái đc phát hiện dựa trên toạ độ x xử lý từ trái sang phải
 	letter_images_regions = sorted(letter_images_regions,key=lambda x:x[0])
@@ -87,6 +84,4 @@ def preprocess_image(image_file):
 		#trích xuất chữ cái từ ảnh gốc với lề 2pixel quanh rìa
 		letter_image = image[y - 2:y + h + 2, x - 2:x + w + 2]
 		letter_images.append(letter_image)
-		#cv2.rectangle(output, (x - 2, y - 2), (x + w + 4, y + h + 4), (0, 255, 0), 1)
-		#cv2.putText(output, letter_image, (x - 5, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 0), 2)
 	return letter_images
