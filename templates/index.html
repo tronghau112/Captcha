@@ -17,7 +17,7 @@
             <h2>Thành viên nhóm:</h2>
             <thead>
                 <tr class="active">
-                    <th></th>
+					<th></th>
                     <th>Họ và tên</th>
                     <th>MSSV</th>
                 </tr>
@@ -57,9 +57,13 @@
     </div>
       <div class="text-center" id="result">
         {%if init%}
+          {%if string_result==''%}
+            <h1>Không nhận diện được</h1>
+          {%endif%}
           {% if string_result %}
             <h1>{{string_result}}</h1>
           {% endif %}
+
         {% endif %}
       </div>
     </div>
@@ -95,7 +99,7 @@
 }
   #result {
       position: fixed;
-      right: 580px;
+      right: 480px;
       top: 265px;
   }
   #move{
