@@ -6,7 +6,7 @@ preprocess_images.py
 
 generate_image.py: gen  captcha in folder images
 
-extract_char.py: extract char to a image and save it in folder output_char
+extract_char.py: extract char to an image and save it in folder output_char
 
 model.py: building model use CNN
 
